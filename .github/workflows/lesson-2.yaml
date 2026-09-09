@@ -22,10 +22,11 @@ jobs:
   unit_test:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-          uses: actions/checkout@v7.0.1
-      - name: checkout
-        with: 
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
           python-version: '3.10'
 
       - name: Install test environment
@@ -35,6 +36,6 @@ jobs:
         working-directory: backend
       - name: Run unit tests
         run: |
-          coverage run -m --source=./hangry_api pytest
+          coverage run --source=./hangry_api -m pytest
           coverage report
-        working-directory: backend 
+        working-directory: backend
